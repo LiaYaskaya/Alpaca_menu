@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpaca_menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <svg style="display: none;">
+        <symbol id="drop" viewBox="0 0 9 6">
+            <path d="M4.5359 0L8.5359 6H0.535904L4.5359 0Z" fill="currentColor" />
+        </symbol>
+        <symbol id="tel" viewBox="0 0 18 18">
+            <path
+                d="M3.62 7.79C5.06 10.62 7.38 12.93 10.21 14.38L12.41 12.18C12.68 11.91 13.08 11.821 13.43 11.94C14.55 12.311 15.76 12.51 17 12.51C17.55 12.51 18 12.96 18 13.51V17C18 17.55 17.55 18 17 18C7.61 18 0 10.391 0 1C0 0.45 0.45 0 1 0H4.5C5.05 0 5.5 0.45 5.5 1C5.5 2.25 5.7 3.45 6.07 4.57C6.18 4.92 6.1 5.31 5.82 5.59L3.62 7.79Z"
+                fill="currentColor" />
+        </symbol>
+    </svg>
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="header__top">
+
+            <a href="index.html" class="header__logo">
+                <img src="img/logo.svg" width="46" height=46" alt="Логотип h.M." />
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">Главная</a>
+                    </li>
+                    <li class="nav__item">
+                        <nav class="nav__drop">
+                            <button class="nav__drop-btn" type="button">
+                                Основное меню
+                                <svg class="nav__drop-icon">
+                                    <use xlink:href="#drop" />
+                                </svg>
+                            </button>
+                            <ul class="nav__drop-list">
+                                <li class="nav__drop-item">
+                                    <a href="#" class="nav__drop-link">Заказать вёрстку</a>
+                                </li>
+                                <li class="nav__drop-item">
+                                    <a href="#" class="nav__drop-link">Отправить макет на проверку</a>
+                                </li>
+                                <li class="nav__drop-item">
+                                    <a href="#" class="nav__drop-link">Хочу работать у вас</a>
+                                </li>
+                                <li class="nav__drop-item">
+                                    <nav class="nav__drop--1">
+                                        <button class="nav__drop-btn" type="button">
+                                            Есть предложение по работе с клиентом
+                                            <svg class="nav__drop-icon">
+                                                <use xlink:href="#drop" />
+                                            </svg>
+                                        </button>
+                                        <ul class="nav__drop-list--1">
+                                            <li class="nav__drop-item--1">
+                                                <a href="#" class="header__nav-link">У меня есть оффер</a>
+                                            </li>
+                                            <li class="nav__drop-item--1">
+                                                <a href="#" class="header__nav-link">Сделать партнёром</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                        </nav>
+                    </li>
+                </ul>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">Наши сервисы</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">Контакты</a>
+                </li>
+                </ul>
+            </nav>
+
+            <div class="header__phone">
+                <button class="header__phone-btn" type="button" aria-label="позвонить">
+                    <svg class="header__phone-icon">
+                        <use xlink:href="#tel" />
+                    </svg>
+                </button>
+                <a class="header__phone-number" href="tel:+13212223333">+1 (321) 222-33-33</a>
+            </div>
+
+        </div>
+
+        <img class="header__img" src="img/alpaca.jpg" width="1440" height="944" alt="Альпака." />
+
+    </header>
+</body>

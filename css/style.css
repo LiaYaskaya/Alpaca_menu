@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #131417;
+    color: #fff;
+    font: 400 18px/24px Roboto, Arial, Helvetica, sans-serif;
+}
+
+.header {}
+
+.header__top {}
+
+.header__logo {}
+
+.header__nav {}
+
+.header__nav-list {}
+
+.header__nav-item {}
+
+.header__phone {}
+
+.header__phone-number {}
+
+.header__img {}
