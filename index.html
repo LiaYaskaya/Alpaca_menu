@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <svg style="display: none;">        
-        <symbol id="tel" viewBox="0 0 18 18">
+        <symbol id="tel" viewBox="0 0 24 24">
             <path
-                d="M3.62 7.79C5.06 10.62 7.38 12.93 10.21 14.38L12.41 12.18C12.68 11.91 13.08 11.821 13.43 11.94C14.55 12.311 15.76 12.51 17 12.51C17.55 12.51 18 12.96 18 13.51V17C18 17.55 17.55 18 17 18C7.61 18 0 10.391 0 1C0 0.45 0.45 0 1 0H4.5C5.05 0 5.5 0.45 5.5 1C5.5 2.25 5.7 3.45 6.07 4.57C6.18 4.92 6.1 5.31 5.82 5.59L3.62 7.79Z"
+            d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.821 16.43 14.94C17.55 15.311 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.391 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
                 fill="currentColor" />
         </symbol>
     </svg>
@@ -28,7 +28,7 @@
                 <img class="header__logo-img" src="img/logo.svg" width="46" height=46" alt="Логотип h.M." />
             </a>
 
-            <nav class="nav">
+            <nav class="header__nav">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a class="nav__link" href="index.html">Главная</a>
@@ -49,7 +49,7 @@
                             </li>
                             <li class="nav__drop-item nav__drop-item--1">
                                 <a class="nav__drop-btn nav__drop-btn--1" href="#">
-                                    Есть предложение по работе с клиентом                                    
+                                    Есть предложение по работе с клиентами                                    
                                 </a>
                                 <ul class="nav__drop nav__drop--1">
                                     <li class="nav__drop-item">
@@ -75,12 +75,18 @@
                 <svg class="header__phone-icon">
                     <use xlink:href="#tel" />
                 </svg>
-                +1 (321) 222-33-33
+                +1 (321) 222 - 33 -33
             </a>
+
+            <div class="header__menu-burger">
+                <span></span>
+            </div>
 
         </div>
 
         <img class="header__img" src="img/alpaca.jpg" width="1440" height="944" alt="Альпака." />
 
     </header>
+
+    <div class="header__overlay"></div>
 </body>

@@ -11,7 +11,12 @@ body {
 }
 
 .header {
-    max-width: 1480px;
+    /* лучше ли делать container для этих свойств или можно на хедер */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -19,33 +24,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 34px 122px 0 122px;
 }
 
 .header__logo {
-    align-self: flex-end;
-    padding-bottom: 3px;
+    padding-top: 17px;
+    padding-bottom: 18px;
 }
 
 .header__logo-img {
     display: block;
 }
 
-.nav {
-    padding-left: 158px;
-    padding-bottom: 6px;
-}
-
-.nav__list {
+.nav__list { 
+    /* как сделать резиновую ширину, можно ли без gap, 
+    width в процентах не дает нужную ширину, даже если вешаешь её на nav*/
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 40px;
     list-style-type: none;
+    padding: 20px 94px 21px 158px;
 }
 
-.nav__item {
+.nav__link {
+    display: block;
     padding: 8px 18px;
 }
 
@@ -56,16 +59,24 @@ body {
     text-decoration: none;
 }
 
-.nav__link:hover,
-.nav__drop-btn:hover,
-.nav__drop-link:hover {
-    color: #EB5757;
+@media (min-width: 1024px) {
+
+    .nav__link:hover,
+    .nav__drop-btn:hover {
+        color: #EB5757;
+    }
 }
 
+.nav__drop-btn {
+    padding: 8px 18px;
+}
+
+/* как лучше указывать координаты для абсолютного позиционирования тут и 
+дальше, лучше в пискелях или в процентах, чтобы был адаптивный дизайн*/
 .nav__drop-btn::after {
     content: '';
     position: absolute;
-    top: 40%;
+    top: 5px;
     right: 0;
     /* width: 0;
     height: 0; */
@@ -75,7 +86,7 @@ body {
     background-color: transparent;
 }
 
-.nav__drop-btn:hover::after {  
+.nav__drop-btn:hover::after {
     transform: rotate(180deg);
 }
 
@@ -90,7 +101,7 @@ body {
 .nav__drop {
     list-style-type: none;
     position: absolute;
-    top: 60px;
+    top: 53px;
     left: -10px;
     background-color: #252830;
     border-radius: 0 0 8px 8px;
@@ -101,7 +112,7 @@ body {
     content: '';
     position: absolute;
     top: -28px;
-    left: 55px;
+    left: 57px;
     border: 14px solid transparent;
     border-bottom-width: 14px;
     border-bottom-color: #252830;
@@ -110,14 +121,14 @@ body {
 
 .nav__drop-item {
     padding: 8px 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);    
+    box-shadow: inset 0 -4px 1px -3px rgba(255, 255, 255, 0.1);
 }
 
 .nav__drop-item:last-child {
-    border-bottom: none;
+    box-shadow: none;
 }
 
-.nav__drop-item:hover{
+.nav__drop-item:hover {
     background-color: #131417;
 }
 
@@ -126,36 +137,46 @@ body {
     border-radius: 0 0 8px 8px;
 }
 
-.nav__drop-link,
-.nav__drop-btn--1 {
-    display: block;
-    font-size: 16px;
-    white-space: nowrap;
-    max-width: 284px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .nav__drop-item--1 {
     position: relative;
+    padding: 0;
 }
 
 .nav__drop-item--1:hover .nav__drop--1 {
     display: block;
 }
 
-.nav__drop-btn--1::after {
-    right: 10px;
+.nav__drop-link,
+.nav__drop-btn--1 {
+    display: block;
+    font-size: 16px;
+    white-space: nowrap;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.nav__drop-btn--1:hover::after {  
+.nav__drop-btn--1 {
+    padding-right: 38px;
+}
+
+.nav__drop-btn--1:hover {
+    color: #FAFAFA;
+}
+
+.nav__drop-btn--1::after {
+    top: 15px;
+    right: 15px;
+}
+
+.nav__drop-btn--1:hover::after {
     transform: rotate(-90deg);
 }
-   
+
 .nav__drop--1 {
     position: absolute;
     top: -40px;
-    left: 340px;
+    left: 343px;
     border-radius: 8px;
     display: none;
 }
@@ -171,7 +192,7 @@ body {
     background-color: transparent;
 }
 
-.nav__drop--1 .nav__drop-item:first-child:hover{
+.nav__drop--1 .nav__drop-item:first-child:hover {
     background-color: #131417;
     border-radius: 8px 8px 0 0;
 }
@@ -181,7 +202,6 @@ body {
     color: #FFFFFF;
     text-decoration: none;
     padding: 8px;
-    margin-left: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,7 +215,7 @@ body {
     width: 24px;
     height: 24px;
     color: #5BC12C;
-    padding-right: 10px;
+    margin-right: 10px;
 }
 
 .header__img {
@@ -203,4 +223,114 @@ body {
     max-width: 100%;
     width: 100%;
     object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .header__menu-burger {
+        position: relative;
+        width: 22px;
+        height: 12px;
+        display: block;
+    }
+
+    .header__menu-burger span,
+    .header__menu-burger::after,
+    .header__menu-burger::before {
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        background-color: #F2994A;
+    }
+
+    .header__menu-burger span {
+        bottom: 5px;
+    }
+
+    .header__menu-burger::after,
+    .header__menu-burger::before {
+        content: '';
+    }
+
+    .header__menu-burger::after {
+        top: 10px;
+    }
+
+    .header__menu-burger::before {
+        top: 0;
+    }
+
+    .header__top {
+        justify-content: space-between;
+        padding: 0 22px;
+        width: 100%;
+    }
+
+    .header__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(19, 20, 23, 0.5);
+        z-index: 1;
+    }
+
+    .nav__list {
+        position: absolute;
+        top: 81px;
+        right: 0;
+        gap: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background-color: #131417;
+        z-index: 2;
+    }
+
+    .nav__item,
+    .nav__drop-link,
+    .nav__drop-btn {        
+        background-color: #252830;
+        padding: 20px; 
+        max-width: 374px;   
+    }
+
+    .nav__item,
+    .nav__drop-item,
+    .nav__drop-btn {  
+        /* почему-то не сработало */      
+        box-shadow: inset 0 -4px 1px -3px #252830;  
+    }
+
+    .nav__link {
+        display: block;
+    }
+
+    .nav__link,
+    .nav__drop-item,
+    .nav__item-drop {
+        padding: 0;
+    }
+
+    .nav__drop {
+        display: block;
+        position: static;
+        border: 0;
+    }
+
+    /* .nav__drop::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #131417;
+        z-index: -1;
+    } */
+
+    /* как переопределить псевдоэлементы */
+    /* как сделать меню до конца страницы и черную подложку*/
 }
