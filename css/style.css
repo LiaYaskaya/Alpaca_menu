@@ -280,7 +280,7 @@ body {
     }
 
     .nav__drop {
-        position: static;        
+        position: static;       
     }
 
     .nav__drop::before {
@@ -289,6 +289,11 @@ body {
 
     .drop._active > .drop__list {
         display: block;
+    }
+
+    .nav__item.drop._active,
+    .nav__drop-item.drop._active {
+        background-color: #131417;
     }
 
     .drop::after {
@@ -301,9 +306,23 @@ body {
         right: 20px;
     }
 
+    .drop._active::after,
+    .drop .drop._active::after {
+        transform: rotate(180deg);
+    }
+
+    .drop__list--2 > .nav__drop {
+        border-radius: 0;
+    }
+
     .nav__item,
     .nav__drop-item {
-        box-shadow: 0 -4px 1px -3px #131417;
+        box-shadow: 0 -4px 1px -3px #131417,
+                    inset 0 -4px 1px -3px #131417;
+    }
+
+    .nav__drop-item:last-child {
+        box-shadow: inset 0 -4px 1px -3px #131417;
     }
 
     .nav__link,
@@ -385,11 +404,11 @@ body {
 
 @media (max-width: 375px) {
     .header__phone {
-        display: none;
+        opacity: 0;
     }
 
     .header__phone-icon {
-        display: block;
+        opacity: 1;
     }
 }
 
