@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <svg style="display: none;">        
+    <svg style="display: none;">
         <symbol id="tel" viewBox="0 0 24 24">
             <path
-            d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.821 16.43 14.94C17.55 15.311 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.391 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+                d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.821 16.43 14.94C17.55 15.311 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.391 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
                 fill="currentColor" />
         </symbol>
     </svg>
@@ -22,45 +22,50 @@
 <body>
     <header class="header">
 
-        <div class="header__top">
+        <div class="header__top container">
 
             <a class="header__logo" href="index.html">
                 <img class="header__logo-img" src="img/logo.svg" width="46" height=46" alt="Логотип h.M." />
             </a>
-
-            <nav class="header__nav">
+            <nav class="js-nav nav">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a class="nav__link" href="index.html">Главная</a>
                     </li>
-                    <li class="nav__item nav__item-drop">
-                        <a class="nav__drop-btn" href="#">
-                            Основное меню                           
+                    <!-- ?почему здесь микс -->
+                    <li class="nav__item drop">
+                        <a class="nav__link" href="#">
+                            Основное меню
                         </a>
-                        <ul class="nav__drop">
-                            <li class="nav__drop-item">
-                                <a class="nav__drop-link" href="#">Заказать вёрстку</a>
-                            </li>
-                            <li class="nav__drop-item">
-                                <a class="nav__drop-link" href="#">Отправить макет на проверку</a>
-                            </li>
-                            <li class="nav__drop-item">
-                                <a class="nav__drop-link" href="#">Хочу работать у вас</a>
-                            </li>
-                            <li class="nav__drop-item nav__drop-item--1">
-                                <a class="nav__drop-btn nav__drop-btn--1" href="#">
-                                    Есть предложение по работе с клиентами                                    
-                                </a>
-                                <ul class="nav__drop nav__drop--1">
-                                    <li class="nav__drop-item">
-                                        <a class="nav__drop-link" href="#">У меня есть оффер</a>
-                                    </li>
-                                    <li class="nav__drop-item">
-                                        <a class="nav__drop-link" href="#">Сделать партнёром</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <!-- ?а здесь модификатор -->
+                        <div class="drop__list drop__list--1">
+                            <ul class="nav__drop">
+                                <li class="nav__drop-item">
+                                    <a class="nav__drop-link" href="#">Заказать вёрстку</a>
+                                </li>
+                                <li class="nav__drop-item">
+                                    <a class="nav__drop-link" href="#">Отправить макет на проверку</a>
+                                </li>
+                                <li class="nav__drop-item">
+                                    <a class="nav__drop-link" href="#">Хочу работать у вас</a>
+                                </li>
+                                <li class="nav__drop-item drop">
+                                    <a class="nav__drop-link" href="#" title="Есть предложение по работе с клиентами">
+                                        Есть предложение по работе с клиентами
+                                    </a>
+                                    <div class="drop__list drop__list--2">
+                                        <ul class="nav__drop">
+                                            <li class="nav__drop-item">
+                                                <a class="nav__drop-link" href="#">У меня есть оффер</a>
+                                            </li>
+                                            <li class="nav__drop-item">
+                                                <a class="nav__drop-link" href="#">Сделать партнёром</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav__item">
                         <a class="nav__link" href="#">Наши сервисы</a>
@@ -72,21 +77,23 @@
             </nav>
 
             <a class="header__phone" href="tel:+13212223333">
+                <!-- нужно ли вставлять svg или указать в стилях -->
                 <svg class="header__phone-icon">
                     <use xlink:href="#tel" />
                 </svg>
                 +1 (321) 222 - 33 -33
             </a>
 
-            <div class="header__menu-burger">
-                <span></span>
-            </div>
+            <button class="js-burger burger" aria-label="открыть меню" type="button">
+                <span class="burger__line"></span>
+            </button>
 
         </div>
-
-        <img class="header__img" src="img/alpaca.jpg" width="1440" height="944" alt="Альпака." />
-
     </header>
+    
+    <main>
+        <img class="main__img" src="img/alpaca.jpg" width="1440" height="944" alt="Альпака." />
+    </main>
 
-    <div class="header__overlay"></div>
+    <div class="js-layer layer"></div>
 </body>

@@ -5,122 +5,187 @@
 }
 
 body {
-    background-color: #131417;
-    color: #FAFAFA;
     font: 400 18px/24px Roboto, Arial, Helvetica, sans-serif;
 }
 
-.header {
-    /* лучше ли делать container для этих свойств или можно на хедер */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1440px;
+.container {
+    /* центрирование, макс-ширина, отступы от края */
+    max-width: 1236px;
     margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header {
+    background-color: #131417;
+    color: #FAFAFA;
+    font: 400 18px/24px Roboto, Arial, Helvetica, sans-serif;
+    /* ?почему здесь и на картинке делаем fixed,
+    а не блоками*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.header__top,
+.nav__list {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
 }
 
 .header__top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .header__logo {
     padding-top: 17px;
     padding-bottom: 18px;
+    margin-right: 60px;
 }
 
 .header__logo-img {
     display: block;
 }
 
-.nav__list { 
-    /* как сделать резиновую ширину, можно ли без gap, 
-    width в процентах не дает нужную ширину, даже если вешаешь её на nav*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    list-style-type: none;
-    padding: 20px 94px 21px 158px;
+.nav {
+    /* чтобы не "съедалось" расстояние отступами, имея в виду возможное переполнение, 
+    растягиваем меню на всё свободное пространство, 
+    добавляем space-between и подгоняем отступ у лого */
+    flex-grow: 1;
 }
 
-.nav__link {
-    display: block;
-    padding: 8px 18px;
+.nav__list {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
 .nav__link,
-.nav__drop-btn,
 .nav__drop-link {
+    display: block;
+    padding: 8px 18px;
     color: #FAFAFA;
+    font: 400 18px/24px Roboto, Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
 
-@media (min-width: 1024px) {
+.nav__link {
+    transition: color .2s ease;
+}
 
-    .nav__link:hover,
-    .nav__drop-btn:hover {
+@media (hover: hover) {
+    .nav__link:hover {
         color: #EB5757;
     }
 }
 
-.nav__drop-btn {
-    padding: 8px 18px;
-}
-
-/* как лучше указывать координаты для абсолютного позиционирования тут и 
-дальше, лучше в пискелях или в процентах, чтобы был адаптивный дизайн*/
-.nav__drop-btn::after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    right: 0;
-    /* width: 0;
-    height: 0; */
-    border: 4px solid transparent;
-    border-top-width: 6px;
-    border-top-color: #F2994A;
-    background-color: transparent;
-}
-
-.nav__drop-btn:hover::after {
-    transform: rotate(180deg);
-}
-
-.nav__item-drop {
+.drop {
     position: relative;
 }
 
-.nav__item-drop:hover .nav__drop {
-    display: block;
+.drop__list {
+    position: absolute;
+    /* transform: translateY(10px);
+    opacity: 0;
+    pointer-events: none; */
+    transition: 
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    .drop:hover > .drop__list {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/*заполнение пустого пространства между блоками, 
+чтобы работал hover эффект на всё расстояние - 
+добавляем контейнер, которому пишется отступ с той стороны, 
+где нужна область действия*/
+.drop__list--1 {
+    width: 320px;
+    left: 0;
+    top: 100%;
+    padding-top: 20px; /*сверху*/
+}
+
+.drop__list--2 {
+    width: 180px;
+    left: 100%;
+    bottom: 0;
+    padding-left: 20px; /*?слева - не отрабатывает*/
+}
+
+.drop::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    color: #F2994A;
+    border: 4px solid transparent;
+    border-top: 6px solid;
+    border-bottom: 0;
+    margin-top: -3px;
+    transition: transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    .drop:hover::after {
+        transform: rotate(-180deg);
+    }
+
+    .drop .drop:hover::after {
+        transform: rotate(-90deg);
+    }
+}
+
+.drop .drop::after {
+    right: 8px;
+}
+
+.drop>.nav__drop-link {
+    padding-right: 38px;
 }
 
 .nav__drop {
     list-style-type: none;
     position: absolute;
-    top: 53px;
+    top: 20px;
     left: -10px;
     background-color: #252830;
     border-radius: 0 0 8px 8px;
-    display: none;
 }
 
 .nav__drop::before {
     content: '';
     position: absolute;
-    top: -28px;
+    top: -14px;
     left: 57px;
+    color: #252830;
     border: 14px solid transparent;
-    border-bottom-width: 14px;
-    border-bottom-color: #252830;
-    background-color: transparent;
+    border-bottom: 14px solid;
+    border-top: 0;
+}
+
+.drop__list--2 > .nav__drop {
+    top: -80px;
+    left: 25px;
+    border-radius: 8px;
+}
+
+.drop__list--2 > .nav__drop::before {
+    top: 52px;
+    left: -21px;
+    transform: rotate(-90deg);
 }
 
 .nav__drop-item {
-    padding: 8px 18px;
     box-shadow: inset 0 -4px 1px -3px rgba(255, 255, 255, 0.1);
 }
 
@@ -128,73 +193,178 @@ body {
     box-shadow: none;
 }
 
-.nav__drop-item:hover {
-    background-color: #131417;
+@media (hover: hover) {
+    .nav__drop-item:hover {
+        background-color: #131417;
+    }
+
+    .nav__drop-item:last-child:hover {
+        background-color: #131417;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .drop__list--2>.nav__drop>.nav__drop-item:first-child:hover {
+        background-color: #131417;
+        border-radius: 8px 8px 0 0;
+    }
 }
 
-.nav__drop-item:last-child:hover {
-    background-color: #131417;
-    border-radius: 0 0 8px 8px;
-}
-
-.nav__drop-item--1 {
-    position: relative;
-    padding: 0;
-}
-
-.nav__drop-item--1:hover .nav__drop--1 {
-    display: block;
-}
-
-.nav__drop-link,
-.nav__drop-btn--1 {
-    display: block;
+.nav__drop-link {
     font-size: 16px;
-    white-space: nowrap;
     max-width: 320px;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.nav__drop-btn--1 {
-    padding-right: 38px;
+/*?как это сделать короче*/
+.drop__list--2>.nav__drop>.nav__drop-item:last-child .nav__drop-link {
+    padding-right: 12px;
 }
 
-.nav__drop-btn--1:hover {
-    color: #FAFAFA;
+.layer {
+    background-color: rgba(19, 20, 23, 0.5);
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 0;
 }
 
-.nav__drop-btn--1::after {
-    top: 15px;
-    right: 15px;
+.layer._active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.nav__drop-btn--1:hover::after {
-    transform: rotate(-90deg);
+@media (max-width: 768px) {
+    .header__logo {
+        margin: 0;
+    }
+    
+    .nav {
+        position: fixed;
+        top: 81px;
+        bottom: 0;
+        right: 0;
+        width: 374px;
+        background-color: #131417;
+        /* transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none; */
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* .nav._active {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+    } */
+
+    .nav__list {
+        display: block;
+    }
+
+    .nav__item {
+        background-color: #252830;
+    }
+
+    .drop__list {
+        position: static;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        padding: 0;
+        width: auto;
+        /* display: none; */
+    }
+
+    .nav__drop {
+        position: static;        
+    }
+
+    .nav__drop::before {
+        display: none;
+    }
+
+    .drop._active > .drop__list {
+        display: block;
+    }
+
+    .drop::after {
+        top: 31px;
+        right: 200px;
+        margin: 0;
+    }
+
+    .drop .drop::after {
+        right: 20px;
+    }
+
+    .nav__item,
+    .nav__drop-item {
+        box-shadow: 0 -4px 1px -3px #131417;
+    }
+
+    .nav__link,
+    .nav__drop-link {
+        display: block;
+        padding: 20px;
+        max-width: 374px;
+    }
 }
 
-.nav__drop--1 {
-    position: absolute;
-    top: -40px;
-    left: 343px;
-    border-radius: 8px;
+.burger {
+    width: 22px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
     display: none;
 }
 
-.nav__drop--1::before {
-    content: '';
+.burger__line {
+    height: 2px;
+    background-color: #F2994A;
     position: absolute;
-    top: 45px;
-    left: -28px;
-    border: 14px solid transparent;
-    border-right-width: 14px;
-    border-right-color: #252830;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -1px;
+}
+
+.burger__line::after,
+.burger__line::before {
+    content: " ";
+    position: absolute;
+    inset: 0;
+    background-color: #F2994A;
+    transform: translateY(5px);
+    transition: transform 0.2s ease;
+}
+
+.burger__line:after {
+    transform: translateY(-5px);
+}
+
+.burger._active .burger__line {
     background-color: transparent;
 }
 
-.nav__drop--1 .nav__drop-item:first-child:hover {
-    background-color: #131417;
-    border-radius: 8px 8px 0 0;
+.burger._active .burger__line::before {
+    transform: translateY(0) rotate(45deg);
+}
+
+.burger._active .burger__line::after {
+    transform: translateY(0) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .burger {
+        display: block;
+    }
 }
 
 .header__phone {
@@ -207,8 +377,20 @@ body {
     align-items: center;
 }
 
-.header__phone:hover {
-    color: #EB5757;
+@media (hover: hover) {
+    .header__phone:hover {
+        color: #EB5757;
+    }
+}
+
+@media (max-width: 375px) {
+    .header__phone {
+        display: none;
+    }
+
+    .header__phone-icon {
+        display: block;
+    }
 }
 
 .header__phone-icon {
@@ -218,119 +400,20 @@ body {
     margin-right: 10px;
 }
 
-.header__img {
-    display: block;
-    max-width: 100%;
+.main__img {
     width: 100%;
+    /* чтобы картинка была пропорциональна ширине height: auto;*/
+    height: auto;
     object-fit: cover;
+    position: fixed;
+    top: 81px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 @media (max-width: 768px) {
-    .header__menu-burger {
-        position: relative;
-        width: 22px;
-        height: 12px;
-        display: block;
+    .main__img {
+        height: 100vh;
     }
-
-    .header__menu-burger span,
-    .header__menu-burger::after,
-    .header__menu-burger::before {
-        height: 2px;
-        width: 100%;
-        position: absolute;
-        background-color: #F2994A;
-    }
-
-    .header__menu-burger span {
-        bottom: 5px;
-    }
-
-    .header__menu-burger::after,
-    .header__menu-burger::before {
-        content: '';
-    }
-
-    .header__menu-burger::after {
-        top: 10px;
-    }
-
-    .header__menu-burger::before {
-        top: 0;
-    }
-
-    .header__top {
-        justify-content: space-between;
-        padding: 0 22px;
-        width: 100%;
-    }
-
-    .header__overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(19, 20, 23, 0.5);
-        z-index: 1;
-    }
-
-    .nav__list {
-        position: absolute;
-        top: 81px;
-        right: 0;
-        gap: 0;
-        padding: 0;
-        flex-direction: column;
-        align-items: stretch;
-        background-color: #131417;
-        z-index: 2;
-    }
-
-    .nav__item,
-    .nav__drop-link,
-    .nav__drop-btn {        
-        background-color: #252830;
-        padding: 20px; 
-        max-width: 374px;   
-    }
-
-    .nav__item,
-    .nav__drop-item,
-    .nav__drop-btn {  
-        /* почему-то не сработало */      
-        box-shadow: inset 0 -4px 1px -3px #252830;  
-    }
-
-    .nav__link {
-        display: block;
-    }
-
-    .nav__link,
-    .nav__drop-item,
-    .nav__item-drop {
-        padding: 0;
-    }
-
-    .nav__drop {
-        display: block;
-        position: static;
-        border: 0;
-    }
-
-    /* .nav__drop::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #131417;
-        z-index: -1;
-    } */
-
-    /* как переопределить псевдоэлементы */
-    /* как сделать меню до конца страницы и черную подложку*/
 }
