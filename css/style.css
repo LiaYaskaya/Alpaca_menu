@@ -88,16 +88,16 @@ body {
 
 .drop__list {
     position: absolute;
-    /* transform: translateY(10px);
+    transform: translateY(10px);
     opacity: 0;
-    pointer-events: none; */
-    transition: 
+    pointer-events: none;
+    transition:
         opacity 0.2s ease,
         transform 0.2s ease;
 }
 
 @media (hover: hover) {
-    .drop:hover > .drop__list {
+    .drop:hover>.drop__list {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
@@ -112,14 +112,16 @@ body {
     width: 320px;
     left: 0;
     top: 100%;
-    padding-top: 20px; /*сверху*/
+    padding-top: 20px;
+    /*сверху*/
 }
 
 .drop__list--2 {
     width: 180px;
     left: 100%;
     bottom: 0;
-    padding-left: 20px; /*?слева - не отрабатывает*/
+    padding-left: 17px;
+    /*слева*/
 }
 
 .drop::after {
@@ -155,9 +157,6 @@ body {
 
 .nav__drop {
     list-style-type: none;
-    position: absolute;
-    top: 20px;
-    left: -10px;
     background-color: #252830;
     border-radius: 0 0 8px 8px;
 }
@@ -165,23 +164,23 @@ body {
 .nav__drop::before {
     content: '';
     position: absolute;
-    top: -14px;
+    top: 6px;
     left: 57px;
+    /*отрисовка стрелочки*/
     color: #252830;
     border: 14px solid transparent;
     border-bottom: 14px solid;
     border-top: 0;
 }
 
-.drop__list--2 > .nav__drop {
-    top: -80px;
-    left: 25px;
+.drop__list--2>.nav__drop {
     border-radius: 8px;
+    width: 180px;
 }
 
-.drop__list--2 > .nav__drop::before {
+.drop__list--2>.nav__drop::before {
     top: 52px;
-    left: -21px;
+    left: -4px;
     transform: rotate(-90deg);
 }
 
@@ -241,7 +240,7 @@ body {
     .header__logo {
         margin: 0;
     }
-    
+
     .nav {
         position: fixed;
         top: 81px;
@@ -249,17 +248,17 @@ body {
         right: 0;
         width: 374px;
         background-color: #131417;
-        /* transform: translateX(100%);
+        transform: translateX(100%);
         opacity: 0;
-        pointer-events: none; */
+        pointer-events: none;
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    /* .nav._active {
+    .nav._active {
         transform: translateX(0);
         opacity: 1;
         pointer-events: auto;
-    } */
+    }
 
     .nav__list {
         display: block;
@@ -276,23 +275,22 @@ body {
         pointer-events: auto;
         padding: 0;
         width: auto;
-        /* display: none; */
+        display: none;
     }
 
     .nav__drop {
-        position: static;       
+        position: static;
     }
 
     .nav__drop::before {
         display: none;
     }
 
-    .drop._active > .drop__list {
+    .drop._active>.drop__list {
         display: block;
     }
 
-    .nav__item.drop._active,
-    .nav__drop-item.drop._active {
+    .drop._active {
         background-color: #131417;
     }
 
@@ -306,19 +304,19 @@ body {
         right: 20px;
     }
 
-    .drop._active::after,
-    .drop .drop._active::after {
+    .drop._active::after {
         transform: rotate(180deg);
     }
 
-    .drop__list--2 > .nav__drop {
+    .drop__list--2>.nav__drop {
         border-radius: 0;
+        width: 374px;
     }
 
     .nav__item,
     .nav__drop-item {
         box-shadow: 0 -4px 1px -3px #131417,
-                    inset 0 -4px 1px -3px #131417;
+            inset 0 -4px 1px -3px #131417;
     }
 
     .nav__drop-item:last-child {
@@ -391,9 +389,10 @@ body {
     color: #FFFFFF;
     text-decoration: none;
     padding: 8px;
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
+    vertical-align: top;
+    gap: 10px;
 }
 
 @media (hover: hover) {
@@ -404,11 +403,15 @@ body {
 
 @media (max-width: 375px) {
     .header__phone {
-        opacity: 0;
+        font-size: 0;
+        color: transparent;
+        gap: 0;
+        margin-left: auto;
+        margin-right: 20px;
     }
 
     .header__phone-icon {
-        opacity: 1;
+        flex-shrink: 0;
     }
 }
 
@@ -416,23 +419,16 @@ body {
     width: 24px;
     height: 24px;
     color: #5BC12C;
-    margin-right: 10px;
 }
 
 .main__img {
     width: 100%;
     /* чтобы картинка была пропорциональна ширине height: auto;*/
-    height: auto;
+    height: 100vh;
     object-fit: cover;
     position: fixed;
     top: 81px;
     left: 0;
     right: 0;
     bottom: 0;
-}
-
-@media (max-width: 768px) {
-    .main__img {
-        height: 100vh;
-    }
 }
