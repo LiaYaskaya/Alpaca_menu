@@ -20,8 +20,6 @@ body {
     background-color: #131417;
     color: #FAFAFA;
     font: 400 18px/24px Roboto, Arial, Helvetica, sans-serif;
-    /* ?почему здесь и на картинке делаем fixed,
-    а не блоками*/
     position: fixed;
     top: 0;
     left: 0;
@@ -46,6 +44,12 @@ body {
     margin-right: 60px;
 }
 
+@media (max-width: 1040px) {
+    .header__logo {
+        margin-right: 40px;
+    }    
+}
+
 .header__logo-img {
     display: block;
 }
@@ -61,6 +65,12 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
+}
+
+@media (max-width: 1040px) {
+    .nav__list {
+        gap: 24px;
+    }   
 }
 
 .nav__link,
@@ -175,7 +185,7 @@ body {
 
 .drop__list--2>.nav__drop {
     border-radius: 8px;
-    width: 180px;
+    width: 186px;
 }
 
 .drop__list--2>.nav__drop::before {
@@ -216,11 +226,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/*?как это сделать короче*/
-.drop__list--2>.nav__drop>.nav__drop-item:last-child .nav__drop-link {
-    padding-right: 12px;
-}
-
 .layer {
     background-color: rgba(19, 20, 23, 0.5);
     position: fixed;
@@ -236,7 +241,7 @@ body {
     pointer-events: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .header__logo {
         margin: 0;
     }
@@ -252,6 +257,7 @@ body {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s ease, transform 0.2s ease;
+        overflow-y: auto;
     }
 
     .nav._active {
@@ -378,7 +384,7 @@ body {
     transform: translateY(0) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .burger {
         display: block;
     }
@@ -403,6 +409,7 @@ body {
 
 @media (max-width: 375px) {
     .header__phone {
+        /*скрыть текст*/
         font-size: 0;
         color: transparent;
         gap: 0;
